@@ -1,0 +1,500 @@
+/* ================================
+   DevOpsFlow - Global Styles
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #07111f;
+    color: #e8f0f7;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1120px, 90%);
+    margin: auto;
+}
+
+
+/* ================================
+   Header
+================================ */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7, 17, 31, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.logo-icon {
+    font-size: 1.4rem;
+}
+
+.project-badge {
+    padding: 7px 13px;
+    border: 1px solid rgba(120, 190, 255, 0.25);
+    border-radius: 50px;
+    color: #9fcfff;
+    font-size: 0.8rem;
+}
+
+
+/* ================================
+   Hero
+================================ */
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(45, 130, 255, 0.15), transparent 30%),
+        radial-gradient(circle at 80% 60%, rgba(125, 80, 255, 0.12), transparent 30%);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(100, 180, 255, 0.08);
+    border-radius: 50%;
+    right: -150px;
+    top: -100px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 14px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(100, 220, 160, 0.25);
+    border-radius: 50px;
+    background: rgba(40, 180, 110, 0.07);
+    color: #8de5b2;
+    font-size: 0.85rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #53e39a;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(83, 227, 154, 0.8);
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.35);
+        opacity: 0.6;
+    }
+}
+
+.hero h1 {
+    max-width: 800px;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin-bottom: 28px;
+}
+
+.hero h1 span {
+    color: #68b5ff;
+}
+
+.hero-text {
+    max-width: 650px;
+    color: #9eafc1;
+    font-size: 1.15rem;
+    margin-bottom: 35px;
+}
+
+.hero-text strong {
+    color: #e8f0f7;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: 0.25s ease;
+}
+
+.primary-btn {
+    background: #4da3ff;
+    color: #06101c;
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(77, 163, 255, 0.25);
+}
+
+.secondary-btn {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #c8d5e2;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-3px);
+}
+
+
+/* ================================
+   Sections
+================================ */
+
+.section {
+    padding: 100px 0;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin-bottom: 45px;
+}
+
+.section-label {
+    color: #68b5ff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 5vw, 3.3rem);
+    margin-bottom: 12px;
+}
+
+.section-heading > p:last-child {
+    color: #8fa1b3;
+}
+
+
+/* ================================
+   Technology Cards
+================================ */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.tech-card {
+    padding: 28px;
+    min-height: 270px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
+    transition: 0.3s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(100, 180, 255, 0.35);
+    background: rgba(100, 180, 255, 0.05);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.tech-icon {
+    font-size: 2rem;
+    margin-bottom: 22px;
+}
+
+.tech-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.tech-card p {
+    color: #8fa1b3;
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 5px;
+    background: rgba(100, 180, 255, 0.08);
+    color: #8ec8ff;
+    font-size: 0.72rem;
+}
+
+
+/* ================================
+   Pipeline
+================================ */
+
+.pipeline-section {
+    background: rgba(255, 255, 255, 0.018);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pipeline-step {
+    width: 170px;
+    padding: 25px 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    background: #0a1727;
+    transition: 0.3s ease;
+}
+
+.pipeline-step:hover {
+    transform: scale(1.06);
+    border-color: rgba(100, 180, 255, 0.4);
+}
+
+.step-number {
+    color: #5faeff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.step-icon {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.pipeline-step h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.pipeline-step p {
+    color: #8295a8;
+    font-size: 0.75rem;
+}
+
+.pipeline-line {
+    width: 35px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #4da3ff,
+        transparent
+    );
+    animation: flow 1.8s infinite;
+}
+
+@keyframes flow {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+
+/* ================================
+   Info Box
+================================ */
+
+.info-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 45px;
+    border: 1px solid rgba(100, 180, 255, 0.15);
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(70, 150, 255, 0.08),
+            rgba(120, 70, 255, 0.04)
+        );
+}
+
+.info-box h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.info-box p {
+    max-width: 700px;
+    color: #94a7b9;
+}
+
+.info-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    color: #8de5b2;
+    font-weight: 700;
+}
+
+
+/* ================================
+   Footer
+================================ */
+
+.footer {
+    padding: 35px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer strong {
+    font-size: 1.05rem;
+}
+
+.footer p {
+    color: #718397;
+    font-size: 0.8rem;
+}
+
+.footer-tech {
+    color: #718397;
+    font-size: 0.78rem;
+}
+
+
+/* ================================
+   Responsive Design
+================================ */
+
+@media (max-width: 1000px) {
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pipeline {
+        flex-wrap: wrap;
+    }
+
+    .pipeline-line {
+        display: none;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .nav {
+        min-height: 62px;
+    }
+
+    .project-badge {
+        display: none;
+    }
+
+    .hero {
+        min-height: 580px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pipeline {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .pipeline-step {
+        width: 100%;
+    }
+
+    .info-box {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
