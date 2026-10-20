@@ -1,86 +1,140 @@
-DevOpsFlow — CI/CD Pipeline with GitHub Actions & Docker
+# 🚀 DevOpsFlow — CI/CD Pipeline with GitHub Actions & Docker
 
-> Elevate Labs Internship — Project 1
+### Elevate Labs Internship — Project 1
 
-
-
-A production-style CI/CD pipeline for a containerized static web application using GitHub Actions, Docker, Docker Hub, and Docker Compose.
-
-The project automatically validates the application, builds a Docker image, and pushes the image to Docker Hub whenever changes are pushed to the main branch.
-
+A responsive DevOps-themed static web application with an automated **CI/CD pipeline using GitHub Actions and Docker**. The project demonstrates containerization, automated validation, Docker image building, Docker Hub integration, and local deployment.
 
 ---
 
-📌 Project Overview
+## 📌 Project Overview
 
-DevOpsFlow is a responsive DevOps-themed static web application created as part of the Elevate Labs internship.
+**DevOpsFlow** is a responsive static web application created using **HTML and CSS** as part of the Elevate Labs internship.
 
-The application is containerized using Docker and integrated with a GitHub Actions CI/CD pipeline.
+The application is containerized using **Docker** and integrated with **GitHub Actions** to automate the CI/CD process.
 
-CI/CD Flow
+Whenever changes are pushed to the `main` branch, GitHub Actions automatically:
 
+* Validates the required project files
+* Builds the Docker image
+* Authenticates with Docker Hub
+* Pushes the image to Docker Hub
+
+The published Docker image can then be pulled and deployed locally.
+
+---
+
+## 🔄 CI/CD Pipeline
+
+<details>
+<summary><strong>🚀 Click to expand the complete CI/CD workflow</strong></summary>
+
+### 1️⃣ Developer
+
+Code is developed and tested locally.
+
+⬇️
+
+### 2️⃣ GitHub Repository
+
+Changes are committed and pushed to the `main` branch.
+
+⬇️
+
+### 3️⃣ GitHub Actions
+
+The automated CI/CD workflow starts.
+
+**Validation Stage**
+
+* Checkout repository
+* Verify required project files
+* Validate project structure
+
+⬇️
+
+**Docker Build Stage**
+
+* Set up Docker Buildx
+* Build Docker image using the `Dockerfile`
+
+⬇️
+
+**Docker Hub Stage**
+
+* Authenticate securely using GitHub Secrets
+* Build the final image
+* Push the image to Docker Hub
+* Tag the image as `latest`
+
+⬇️
+
+### 4️⃣ Local Deployment
+
+The Docker image is pulled from Docker Hub and executed locally.
+
+⬇️
+
+### 5️⃣ Web Application
+
+The DevOpsFlow application becomes available through the browser.
+
+</details>
+
+### 🧭 Quick Flow
+
+```text
 Developer
-   │
-   ▼
+    ↓
 GitHub Repository
-   │
-   │ Push to main
-   ▼
+    ↓
 GitHub Actions
-   │
-   ├── Test
-   │
-   ├── Build Docker Image
-   │
-   └── Push Image
-          │
-          ▼
-      Docker Hub
-          │
-          ▼
-   Docker Pull / Run
-          │
-          ▼
-   Local Application
-
+    ↓
+Validate
+    ↓
+Build Docker Image
+    ↓
+Docker Hub
+    ↓
+Pull & Run Locally
+    ↓
+Web Application
+```
 
 ---
 
-🎯 Objectives
+## 🎯 Objectives
 
-- Build a responsive static web application.
-- Containerize the application using Docker.
-- Run the application using Docker Compose.
-- Create an automated CI/CD pipeline using GitHub Actions.
-- Build a Docker image automatically.
-- Push the image to Docker Hub automatically.
-- Verify the Docker image locally.
-- Follow basic DevOps and CI/CD practices.
-
-
----
-
-🛠️ Tools & Technologies
-
-Tool / Technology	Purpose
-
-HTML5	Application structure
-CSS3	Styling and responsive design
-Docker	Application containerization
-Docker Compose	Local container deployment
-Nginx	Web server
-Git	Version control
-GitHub	Source code hosting
-GitHub Actions	CI/CD automation
-Docker Hub	Container image registry
-Docker Desktop	Local Docker environment
-
-
+* Build a responsive static web application.
+* Containerize the application using Docker.
+* Create a Docker Compose configuration.
+* Implement CI/CD using GitHub Actions.
+* Automatically build a Docker image.
+* Push the image to Docker Hub.
+* Deploy and verify the application locally.
+* Understand the complete CI/CD workflow.
 
 ---
 
-📂 Project Structure
+## 🛠️ Tools & Technologies
 
+| Technology     | Purpose                       |
+| -------------- | ----------------------------- |
+| HTML5          | Application structure         |
+| CSS3           | Styling and responsive design |
+| Git            | Version control               |
+| GitHub         | Source code repository        |
+| GitHub Actions | CI/CD automation              |
+| Docker         | Application containerization  |
+| Docker Compose | Local container management    |
+| Docker Hub     | Container image registry      |
+| Nginx Alpine   | Web server                    |
+| VS Code        | Development environment       |
+
+---
+
+## 📁 Project Structure
+
+```text
 Elevate-Project-1-CICD/
 │
 ├── .github/
@@ -92,366 +146,399 @@ Elevate-Project-1-CICD/
 ├── index.html
 ├── style.css
 └── README.md
-
+```
 
 ---
 
-🌐 Application
+## 🌐 Application
 
-The application is a responsive DevOps-themed dashboard called DevOpsFlow.
+The application is a responsive DevOps-themed dashboard named **DevOpsFlow**.
 
 It is built using only:
 
-- HTML
-- CSS
+* HTML5
+* CSS3
 
 No JavaScript or external application framework is required.
 
+The interface includes responsive sections, navigation, project information, technology information, and DevOps-focused content.
 
 ---
 
-🐳 Docker Configuration
+## 🐳 Docker Configuration
 
-The application uses Nginx Alpine as the base image.
+The application uses **Nginx Alpine** as the lightweight web server.
 
-The Docker image:
+### Dockerfile
 
-1. Uses a lightweight Nginx Alpine image.
-2. Copies index.html into the Nginx web directory.
-3. Copies style.css into the Nginx web directory.
-4. Exposes port 80.
+```dockerfile
+FROM nginx:alpine
 
-The container listens on port 80.
+COPY index.html /usr/share/nginx/html/index.html
+COPY style.css /usr/share/nginx/html/style.css
 
-For local development, the host exposes the application through port 8080.
+EXPOSE 80
+```
 
+### Why Nginx?
+
+Nginx is used to serve the static HTML/CSS application efficiently inside the Docker container.
 
 ---
 
-🚀 Run Locally with Docker Compose
+## 🧩 Docker Compose
+
+The project also includes a `docker-compose.yml` file for easy local deployment.
+
+```yaml
+services:
+  web:
+    build: .
+    container_name: devopsflow-app
+    ports:
+      - "8080:80"
+```
+
+The application is exposed at:
+
+```text
+http://localhost:8080
+```
+
+---
+
+## ▶️ Run Locally with Docker Compose
 
 Make sure Docker Desktop is running.
 
-1. Clone the repository
-
-git clone https://github.com/nileshyadav2803/Elevate-Project-1-CICD.git
-
-2. Enter the project directory
-
-cd Elevate-Project-1-CICD
-
-3. Build and start the container
-
+```bash
 docker compose up -d --build
+```
 
-4. Verify the running container
+Check the running container:
 
+```bash
 docker ps
+```
 
-5. Open the application
+Open the application:
 
+```text
 http://localhost:8080
+```
 
-6. Stop the application
+Stop the application:
 
+```bash
 docker compose down
-
+```
 
 ---
 
-⚙️ CI/CD Pipeline
+## ⚙️ GitHub Actions CI/CD
 
-The project uses GitHub Actions for continuous integration and continuous delivery.
+The workflow is located at:
 
-Workflow file:
-
+```text
 .github/workflows/ci-cd.yml
+```
 
-The workflow runs automatically when code is pushed to the main branch.
+The pipeline contains three main jobs:
 
-Pipeline Stages
+### 🔹 Test Application
 
-1. Test
+Validates that the required project files exist:
 
-The workflow checks whether all required project files are available:
+* `index.html`
+* `style.css`
+* `Dockerfile`
+* `docker-compose.yml`
 
-index.html
-style.css
-Dockerfile
-docker-compose.yml
+### 🔹 Build Docker Image
 
-If the required files are missing, the workflow fails.
+Builds the Docker image using Docker Buildx.
 
+### 🔹 Push Image to Docker Hub
 
----
+After a successful build on the `main` branch:
 
-2. Build Docker Image
-
-GitHub Actions builds the Docker image using Docker Buildx.
-
-The build stage verifies that the Dockerfile can successfully create the application image.
-
-
----
-
-3. Push Image to Docker Hub
-
-After a successful build, GitHub Actions logs in to Docker Hub using repository secrets and pushes the image.
-
-Docker image:
-
-nileshyadavny/elevate-project-1-cicd:latest
-
+* Logs in to Docker Hub
+* Builds the image
+* Pushes the image
+* Uses the `latest` tag
 
 ---
 
-🔐 GitHub Secrets
+## 🔐 GitHub Secrets
 
-Docker Hub credentials are not stored directly inside the workflow file.
+Docker Hub credentials are stored securely using GitHub Repository Secrets.
 
-The following GitHub repository secrets are used:
-
+```text
 DOCKERHUB_USERNAME
 DOCKERHUB_TOKEN
+```
 
-This keeps the Docker Hub credentials protected while allowing GitHub Actions to authenticate securely.
-
+Sensitive credentials are **not stored directly inside the workflow file**.
 
 ---
 
-🐋 Docker Hub Image
+## 🐋 Docker Hub Image
 
-The Docker image is available on Docker Hub as:
+**Docker Hub Repository:**
 
+`nileshyadavny/elevate-project-1-cicd`
+
+**Image:**
+
+```text
 nileshyadavny/elevate-project-1-cicd:latest
+```
 
-The latest tag represents the latest successfully pushed version of the application image.
-
-
----
-
-🔄 CI/CD Process
-
-Code Change
-     │
-     ▼
-Git Push
-     │
-     ▼
-GitHub
-     │
-     ▼
-GitHub Actions
-     │
-     ▼
-Validate Files
-     │
-     ▼
-Build Docker Image
-     │
-     ▼
-Docker Hub Login
-     │
-     ▼
-Push Docker Image
-     │
-     ▼
-Docker Hub
-
-This removes the need to manually build and push the Docker image after every change.
-
+The image is automatically pushed by the GitHub Actions pipeline.
 
 ---
 
-🧪 Verification
+## 📥 Pull Docker Image from Docker Hub
 
-The project was verified at multiple stages.
+```bash
+docker pull nileshyadavny/elevate-project-1-cicd:latest
+```
 
-Local Application
+Verify the image:
 
-The application was successfully opened through:
-
-http://localhost:8080
-
-Docker Container
-
-The container was verified using:
-
-docker ps
-
-Docker Image
-
-The local Docker image was verified using:
-
+```bash
 docker images
-
-Docker Hub
-
-The image was successfully pushed with the:
-
-latest
-
-tag.
-
-GitHub Actions
-
-The CI/CD workflow was successfully executed with all stages completed successfully.
-
+```
 
 ---
 
-📸 Project Evidence
+## 🚀 Run the Docker Hub Image Locally
 
-Screenshots demonstrating the project execution and CI/CD pipeline can be added below.
+```bash
+docker run -d --name elevate-cicd-app -p 8081:80 nileshyadavny/elevate-project-1-cicd:latest
+```
 
-Application Running
+Verify the container:
 
-Screenshot:
-Local application running on localhost:8080
+```bash
+docker ps
+```
 
-Docker Container
+Open the deployed application:
 
-Screenshot:
-Docker container running successfully
+```text
+http://localhost:8081
+```
 
-Docker Image
-
-Screenshot:
-Docker image available locally
-
-GitHub Actions
-
-Screenshot:
-Successful GitHub Actions CI/CD workflow
-
-Docker Hub
-
-Screenshot:
-Docker Hub repository containing the latest image
-
+This verifies that the image pushed to Docker Hub can be successfully pulled and deployed locally.
 
 ---
 
-💡 Key DevOps Concepts Demonstrated
+## 🔍 Verification
+
+The project was verified at multiple stages:
+
+### ✅ Application Verification
+
+The static web application was successfully opened in a browser.
+
+### ✅ Docker Verification
+
+The application was successfully built and executed inside a Docker container.
+
+### ✅ GitHub Verification
+
+The source code and CI/CD workflow were successfully pushed to GitHub.
+
+### ✅ GitHub Actions Verification
+
+The CI/CD workflow completed successfully.
+
+### ✅ Docker Hub Verification
+
+The Docker image was successfully pushed to Docker Hub with the `latest` tag.
+
+### ✅ Docker Hub Deployment Verification
+
+The Docker Hub image was successfully pulled and deployed locally.
+
+---
+
+## 📸 Project Evidence
+
+The project includes evidence for:
+
+* Local web application
+* Running Docker container
+* Local Docker deployment
+* Docker Hub image
+* Docker image available locally
+* Docker Hub image running as a container
+* Docker Hub image deployed application
+* Successful GitHub Actions workflow
+
+---
+
+## 📚 Key DevOps Concepts
 
 <details>
-<summary><strong>Click to view concepts</strong></summary>Containerization
+<summary><strong>🐳 What is Docker?</strong></summary>
 
-Docker packages the application and its required web server environment into a portable container.
+Docker packages an application and its required environment into a portable container.
 
-CI/CD
-
-GitHub Actions automates validation, Docker image building, and image publishing.
-
-Infrastructure Consistency
-
-The Dockerfile defines a consistent environment for running the application.
-
-Image Registry
-
-Docker Hub acts as a centralized registry for storing and distributing the Docker image.
-
-Automation
-
-The pipeline reduces manual work by automatically building and publishing the image after code changes.
-
-Version Control
-
-Git and GitHub maintain the application's source code and project history.
+This helps maintain consistency between development and deployment environments.
 
 </details>
----
-
-🧠 What I Learned
 
 <details>
-<summary><strong>Click to view learning outcomes</strong></summary>- How to containerize a web application using Docker.
-- How Dockerfiles define container images.
-- How Docker Compose simplifies local deployment.
-- How GitHub Actions automates CI/CD workflows.
-- How Docker images are pushed to Docker Hub.
-- How GitHub repository secrets protect credentials.
-- How source code, CI/CD, and container registries work together.
-- How to verify containers and Docker images locally.
+<summary><strong>🔄 What is CI/CD?</strong></summary>
+
+**Continuous Integration (CI)** automatically validates and builds changes.
+
+**Continuous Delivery/Deployment (CD)** automates the process of making application artifacts available for deployment.
+
+In this project, GitHub Actions performs the automated CI/CD workflow.
 
 </details>
+
+<details>
+<summary><strong>🐙 What is GitHub Actions?</strong></summary>
+
+GitHub Actions is an automation platform integrated with GitHub repositories.
+
+It is used here to automatically validate the project, build the Docker image, and push the image to Docker Hub.
+
+</details>
+
+<details>
+<summary><strong>🐋 What is Docker Hub?</strong></summary>
+
+Docker Hub is a container image registry used to store and distribute Docker images.
+
+The CI/CD pipeline pushes the project image to Docker Hub so it can later be pulled and deployed.
+
+</details>
+
+<details>
+<summary><strong>🔐 Why use GitHub Secrets?</strong></summary>
+
+GitHub Secrets allow sensitive credentials such as Docker Hub authentication tokens to be stored securely instead of writing them directly inside the workflow.
+
+</details>
+
 ---
 
-▶️ Quick Start
+## 🧠 Learning Outcomes
 
-For a quick local deployment:
+Through this project, the following practical skills were developed:
 
+* Git and GitHub workflow
+* Repository management
+* Docker image creation
+* Docker container management
+* Docker Compose
+* Nginx-based static application deployment
+* GitHub Actions
+* CI/CD pipeline implementation
+* Docker Hub image management
+* Secure credential handling with GitHub Secrets
+* Local container deployment and verification
+
+---
+
+## ⚡ Quick Start
+
+### Clone Repository
+
+```bash
 git clone https://github.com/nileshyadav2803/Elevate-Project-1-CICD.git
+```
+
+```bash
 cd Elevate-Project-1-CICD
+```
+
+### Start Application
+
+```bash
 docker compose up -d --build
+```
 
-Then open:
+### Open
 
+```text
 http://localhost:8080
-
+```
 
 ---
 
-🧹 Cleanup
+## 🧹 Cleanup
 
-To stop and remove the project containers:
+Stop the Docker Compose deployment:
 
+```bash
 docker compose down
+```
 
-To view running containers:
+Stop and remove the Docker Hub deployment:
 
-docker ps
-
-To view Docker images:
-
-docker images
-
+```bash
+docker stop elevate-cicd-app
+docker rm elevate-cicd-app
+```
 
 ---
 
 ## 📋 Project Checklist
 
-- ✅ Responsive web application
-- ✅ Dockerfile created
-- ✅ Docker Compose configuration
-- ✅ Local Docker deployment
-- ✅ GitHub repository
-- ✅ Git version control
-- ✅ GitHub Actions workflow
-- ✅ Automated Docker image build
-- ✅ Docker Hub authentication
-- ✅ Docker Hub image push
-- ✅ CI/CD workflow verification
-- ✅ Docker image verification
+* ✅ Responsive web application
+* ✅ HTML/CSS implementation
+* ✅ Dockerfile created
+* ✅ Docker Compose configuration
+* ✅ Local Docker deployment
+* ✅ GitHub repository
+* ✅ Git version control
+* ✅ GitHub Actions workflow
+* ✅ Automated project validation
+* ✅ Automated Docker image build
+* ✅ Docker Hub authentication
+* ✅ Docker Hub image push
+* ✅ CI/CD workflow verification
+* ✅ Docker image verification
+* ✅ Docker Hub image local deployment
 
 ---
 
-🏁 Conclusion
+## 🏁 Conclusion
 
-This project demonstrates a complete beginner-friendly CI/CD workflow for a containerized web application.
+This project demonstrates a complete practical CI/CD workflow for a containerized static web application.
 
-The application is developed using HTML and CSS, containerized using Docker, automatically built through GitHub Actions, and published to Docker Hub.
+The application is developed using HTML and CSS, containerized using Docker, automatically validated and built using GitHub Actions, and published to Docker Hub.
 
-The project provides practical experience with essential DevOps concepts including Git, GitHub, Docker, Docker Compose, CI/CD automation, secrets management, and container registries.
-
-
----
-
-👨‍💻 Author
-
-Nilesh Yadav
-
-BCA Fresher | Cloud & DevOps Learner
-
-Project: Elevate Labs Internship — Project 1
-
+The Docker image was then pulled from Docker Hub and deployed locally, completing the development-to-deployment workflow.
 
 ---
 
-⭐ Project Status
+## 👨‍💻 Author
 
-Status: Completed
+**Nilesh Yadav**
 
-Pipeline: GitHub Actions → Docker Build → Docker Hub
+BCA Fresher | Aspiring Cloud Support Engineer → DevOps Engineer
 
-Deployment: Local Docker
+**GitHub:**
+`https://github.com/nileshyadav2803`
+
+**Project Repository:**
+`https://github.com/nileshyadav2803/Elevate-Project-1-CICD`
+
+---
+
+## 📌 Project Information
+
+**Project:** Elevate Labs Internship — Project 1
+**Type:** CI/CD Pipeline
+**Application:** DevOpsFlow
+**CI/CD:** GitHub Actions
+**Containerization:** Docker
+**Registry:** Docker Hub
+**Deployment:** Local Docker
