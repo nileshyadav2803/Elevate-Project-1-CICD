@@ -535,10 +535,15 @@ BCA Fresher | Aspiring Cloud Support Engineer → DevOps Engineer
 
 ## 📌 Project Information
 
-**Project:** Elevate Labs Internship — Project 1
-**Type:** CI/CD Pipeline
-**Application:** DevOpsFlow
-**CI/CD:** GitHub Actions
-**Containerization:** Docker
-**Registry:** Docker Hub
-**Deployment:** Local Docker
+| 📋 Details | 🔹 Information |
+|---|---|
+| **Project** | Elevate Labs Internship — Project 1 |
+| **Project Type** | CI/CD Pipeline |
+| **Application** | DevOpsFlow |
+| **Frontend** | HTML5 + CSS3 |
+| **CI/CD** | GitHub Actions |
+| **Containerization** | Docker |
+| **Web Server** | Nginx Alpine |
+| **Container Registry** | Docker Hub |
+| **Deployment** | Local Docker |
+| **Cost** | ₹0 |
